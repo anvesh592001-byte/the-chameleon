@@ -226,7 +226,7 @@
        · the film pauses automatically whenever the hero leaves the viewport
        · prefers-reduced-motion starts it on the poster frame, not moving   */
   const Film = (() => {
-    let video, wrap, fsBtn, tries = 0, dead = false, wantPlay = true, onScreen = true;
+    let video, wrap, tries = 0, dead = false, wantPlay = true, onScreen = true;
 
     function play() {
       if (dead || !onScreen) return;
@@ -250,7 +250,6 @@
       video = $('[data-hero-video]');
       if (!video) return;
       wrap = $('[data-hero-media]');
-      fsBtn = $('[data-video-fullscreen]');
 
       video.muted = true;                 // required for autoplay
       video.playsInline = true;
@@ -262,14 +261,36 @@
       const thrifty = conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ''));
 
       video.addEventListener('error', () => {
-        if (!video.error || video.error.code === 4 || video.error.code === 3) markDead();
+        if (!video.error || video.error.code === 4 || video.error.code === 3) {
+          markDead();
+          // expose the browser's own controls so the footage is still reachable
+          video.controls = true;
+          video.preload = 'metadata';
+        }
       });
 
-      /* the film is its own control */
-      video.addEventListener('click', () => {
+      /* The film is its own control. The listener sits on the hero rather than
+         the video, because the type block is a full-width element laid over
+         the footage and would otherwise swallow every click. Clicks that land
+         on the copy — or on a link — are left alone so text stays selectable. */
+      const stage = $('.hero');
+      const toggleFilm = () => {
         if (dead) return;
         if (video.paused) { wantPlay = true; play(); } else { wantPlay = false; pause(); }
-      });
+      };
+      if (stage) {
+        stage.addEventListener('click', ev => {
+          if (ev.target.closest('a, button, input, textarea, .hero__col, .nav, .scroll-cue')) return;
+          if (window.getSelection && String(window.getSelection()).length) return;  // a selection, not a tap
+          toggleFilm();
+        });
+        stage.addEventListener('keydown', ev => {
+          if (ev.key === ' ' || ev.key === 'Enter') {
+            if (ev.target.closest('a, button')) return;
+            ev.preventDefault(); toggleFilm();
+          }
+        });
+      }
 
       /* stop the moving image the moment it is out of sight */
       if ('IntersectionObserver' in window) {
@@ -280,19 +301,6 @@
             else pause();
           }
         }, { threshold: 0.12 }).observe(wrap);
-      }
-
-      if (fsBtn && wrap) {
-        fsBtn.addEventListener('click', () => {
-          const req = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
-          if (!req) { pause(); video.controls = true; return; }  // graceful fallback
-          if (document.fullscreenElement) document.exitFullscreen();
-          else req.call(wrap).catch(() => {});
-        });
-        document.addEventListener('fullscreenchange', () => {
-          if (document.fullscreenElement === wrap) { wantPlay = true; play(); }
-          Parallax.measure();
-        });
       }
 
       document.addEventListener('visibilitychange', () => {

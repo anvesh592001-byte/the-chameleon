@@ -49,15 +49,31 @@ target and then idles when it settles — no continuous rendering.
 
 ## The film player
 
-No player chrome sits over the subject. Accessibility is preserved instead of
-a visible pause button:
+**There is no player chrome at all** — no pause button, no full-screen button,
+no browser media overlay. The frame carries only the artwork and the type.
+Accessibility is preserved by behaviour instead of buttons:
 
-- clicking the film plays or pauses it
+- clicking the film plays or pauses it (the type block is exempt, so copy stays
+  selectable and links still navigate)
 - it pauses automatically whenever the hero leaves the viewport
-- `prefers-reduced-motion` starts it on the poster frame, still and unpaused-loopless
+- `prefers-reduced-motion` starts it on the poster frame, still and loop-free
 - metred / data-saving connections only fetch metadata and the poster
 - if the browser cannot decode the asset, the poster (a real frame of the same
-  footage) holds the composition and the tools stand down
+  footage) holds the composition
+
+Chrome will otherwise paint its own media overlay — a cast button and play
+button — over the artwork, so the UA shadow UI is suppressed both in mark-up
+(`disableRemotePlayback`, `controlslist`) and in CSS (`::-webkit-media-controls*`).
+
+### One bug worth recording
+
+The hero headline originally rendered in **italic**, and its final letter was
+clipped at some widths. Both had the same cause: the masked headline needs a
+block-level child, and `<i>` defaults to italic — which is a wider face than the
+upright the size cap is computed from. Resetting `font-style: normal` and sizing
+against the measured 6.07em glyph ratio (capped at 6.5 for headroom) removed the
+clipping at every viewport. Every other headline was unaffected because it used
+a different attribute that already reset the style.
 
 `assets/js/main.js` also carries the Cloudinary player initialiser verbatim — if
 `window.cloudinary` is ever present, the hero upgrades to the official player:
@@ -79,11 +95,12 @@ while the diagram is on screen.
 
 ## Verified
 
-- 18 viewports from 320 × 700 to 2560 × 1440: no clipped headlines, no text over
+- 24 viewports from 320 × 700 to 2560 × 1440: no clipped headlines, no text over
   the subject, no horizontal overflow, nothing pushed below the fold
 - reverse-scroll audit: every off-screen element returns to its hidden state;
   stable through rapid ping-pong scrolling
-- `prefers-reduced-motion`: all 79 animated elements static and visible
+- `prefers-reduced-motion`: all 78 animated elements static and visible
+- no native media overlay in 12 captures across 4 portrait viewports
 - one `h1`, ordered headings, alt text on every image, labelled controls,
   keyboard-navigable, visible focus rings
 - render-blocking fonts preloaded and self-hosted; all imagery lazy-loaded

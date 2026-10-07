@@ -153,6 +153,7 @@ p{ max-width:var(--maxw-text); text-wrap:pretty }
 .sec__title,.hero__title,.final__title,.pullquote p,.adapt__close,.tender__quote{ text-wrap:balance }
 p + p{ margin-top:1.05em }
 p em{ font-family:var(--font-serif); font-style:italic; font-weight:400; color:var(--ivory) }
+p i, .cite i{ font-family:var(--font-serif); font-style:italic; font-size:1.06em; color:var(--ivory-2) }
 p b, .lead b{ font-weight:600; color:var(--ivory) }
 p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
 
@@ -336,29 +337,6 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
   transform-origin:50% 46%;
 }
 
-/* true full screen for the film itself — uncropped, no UI over the subject */
-.hero__media:fullscreen,
-.hero__media:-webkit-full-screen{
-  width:100vw; height:100vh; aspect-ratio:auto; background:#000;
-}
-.hero__media:fullscreen .hero__video,
-.hero__media:-webkit-full-screen .hero__video{ object-fit:contain; transform:none !important; opacity:1 !important }
-.hero__media:fullscreen .hero__scrim,
-.hero__media:-webkit-full-screen .hero__scrim{ display:none }
-.hero__media:fullscreen .hero__frame,
-.hero__media:-webkit-full-screen .hero__frame{ display:none }
-.hero__media:fullscreen .hero__slate,
-.hero__media:-webkit-full-screen .hero__slate{
-  display:flex; left:var(--pad); right:auto; bottom:clamp(14px,2.4vh,26px);
-}
-.hero__media.is-media-unavailable .hero__video{ filter:saturate(1.04) }
-.is-media-unavailable .hero__tools{ opacity:0; pointer-events:none }
-
-.hero__media:fullscreen .hero__slate::after,
-.hero__media:-webkit-full-screen .hero__slate::after{
-  content:"Esc to exit"; margin-left:.8em; color:var(--ivory-4);
-}
-.hero__frame{ display:none }
 
 /* scrims — placed only where type will sit */
 .hero__scrim{ position:absolute; inset:0; pointer-events:none; z-index:2 }
@@ -402,15 +380,16 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
   font-family:var(--font-display);
   font-weight:900;
   /* capped against the type column so the longest word can never be clipped */
-  font-size:min(var(--fs-display), calc((min(760px, 100vw - (var(--pad) * 2))) / 6.28));
+  font-size:min(var(--fs-display), calc((min(760px, 100vw - (var(--pad) * 2))) / 6.5));
   line-height:.86;
   letter-spacing:-.042em;
   color:var(--ivory);
   text-transform:uppercase;
   margin-left:-.045em;
 }
-/* the mask needs a block child, or overflow:hidden clips the word itself */
-.hero__title .ln > i{ display:block }
+/* the mask needs a block child, and the upright face: <i> defaults to
+   italic, which is wider than the cap is computed for and gets clipped */
+.hero__title .ln > i{ display:block; font-style:normal }
 .hero__sub{
   margin-top:clamp(12px,1.8vh,20px);
   display:flex; flex-wrap:wrap; align-items:baseline; gap:.55em .9em;
@@ -454,31 +433,39 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
   white-space:nowrap;
 }
 
-.hero__tools{
-  grid-row:1; grid-column:1;
-  align-self:start; justify-self:end;
-  z-index:5;
-  display:flex; align-items:center; gap:8px;
-  margin:14px;
+/* the film itself is the control: no chrome of any kind sits over the frame.
+   Chrome will otherwise paint its own media overlay (cast button, play
+   button) on top of the artwork, so the whole UA shadow UI is suppressed.
+   The film stays operable — clicking it plays and pauses, the poster covers
+   a missing codec, and the mark-up keeps its accessible name.             */
+.hero__video{ cursor:pointer }
+.hero__video::-webkit-media-controls,
+.hero__video::-webkit-media-controls-enclosure,
+.hero__video::-webkit-media-controls-overlay-enclosure,
+.hero__video::-webkit-media-controls-overlay-play-button,
+.hero__video::-webkit-media-controls-panel,
+.hero__video::-webkit-media-controls-play-button,
+.hero__video::-webkit-media-controls-start-playback-button,
+.hero__video::-webkit-media-controls-overflow-button,
+.hero__video::-internal-media-controls-overlay-cast-button,
+.hero__video::-internal-media-controls-download-button,
+.hero__video::-internal-media-controls-loading-panel{
+  display:none !important;
+  -webkit-appearance:none; appearance:none;
 }
-.tool{
-  display:inline-flex; align-items:center; gap:.62em;
+/* the one control left in the document: the eye diagram's sweep */
+.btn-ghost{
+  display:inline-flex; align-items:center;
   font-family:var(--font-mono); font-size:var(--fs-micro);
   letter-spacing:.15em; text-transform:uppercase;
-  color:var(--ivory-2);
+  color:var(--ivory-3);
   border:1px solid var(--line);
-  background:rgba(7,10,8,.46);
-  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
-  padding:.62em .9em; line-height:1;
-  transition:border-color .4s var(--e-soft), background .4s, color .4s, transform .4s var(--e-out);
+  background:none;
+  padding:.72em 1.05em; line-height:1;
+  transition:color .4s var(--e-soft), border-color .4s, background .4s, transform .4s var(--e-out);
 }
-.tool:hover{ border-color:var(--line-firm); background:rgba(7,10,8,.72); color:var(--ivory) }
-.tool--icon{ padding:.68em }
-.tool--icon svg{ width:13px; height:13px }
-.tool__icon svg{ width:12px; height:12px; color:var(--sage) }
-/* the film itself is the play/pause control: no chrome sits over the frame */
-.hero__video{ cursor:pointer }
-.tool--ghost:hover{ background:rgba(242,238,227,.05) }
+.btn-ghost:hover{ color:var(--ivory); border-color:var(--line-firm); background:rgba(242,238,227,.05); transform:translateY(-2px) }
+.btn-ghost[aria-pressed="true"]{ color:var(--ink); background:var(--ivory); border-color:var(--ivory) }
 
 .scroll-cue{
   grid-row:2; grid-column:1; z-index:5;
@@ -1124,17 +1111,11 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
   }
   .hero__col{ max-width:min(620px,43vw) }
   .hero__title{
-    font-size:min(clamp(3.4rem,7.4vw,8.4rem), calc(min(620px, 43vw) / 6.28));
+    font-size:min(clamp(3.4rem,7.4vw,8.4rem), calc(min(620px, 43vw) / 6.5));
   }
   .hero__lede{ max-width:46ch }
 
-  .hero__tools{
-    grid-row:1; grid-column:1;
-    align-self:start; justify-self:end;
-    position:absolute; top:0; right:0;
-    margin:calc(var(--nav-h) + clamp(18px,2.6vh,34px)) var(--pad) 0 0;
-  }
-  .hero__slate{
+    .hero__slate{
     display:flex;
     left:auto; right:var(--pad);
     bottom:clamp(20px,3vh,34px);
@@ -1158,7 +1139,7 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
 /* very wide screens — keep the type column from drifting into the subject */
 @media (min-aspect-ratio:6/5) and (min-width:1700px){
   .hero__col{ max-width:min(680px,40vw) }
-  .hero__title{ font-size:min(clamp(3.4rem,7.4vw,8.4rem), calc(680px / 6.28)) }
+  .hero__title{ font-size:min(clamp(3.4rem,7.4vw,8.4rem), calc(680px / 6.5)) }
 }
 
 /* short landscape viewports (laptops in browsing mode): tighten the
@@ -1167,7 +1148,7 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
   .hero__inner{ padding-bottom:clamp(28px,4.6vh,54px) }
   .hero__eyebrow{ margin-bottom:clamp(9px,1.7vh,16px) }
   .hero__title{
-    font-size:min(clamp(2.9rem,6.1vw,7rem), calc(min(620px, 43vw) / 6.28));
+    font-size:min(clamp(2.9rem,6.1vw,7rem), calc(min(620px, 43vw) / 6.5));
   }
   .hero__sub{ margin-top:clamp(8px,1.3vh,14px) }
   .hero__sub-main{ font-size:clamp(1.1rem,1.7vw,1.6rem) }
@@ -1204,9 +1185,7 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
   .hero__lede{ font-size:1rem; max-width:44ch }
   .hero__meta{ margin-top:clamp(16px,2.6vh,24px); column-gap:clamp(18px,7vw,40px) }
   .hero__meta li:nth-child(3){ display:none }
-  .hero__tools{ margin:10px }
-  .tool{ font-size:.6rem }
-  /* the film strip owns the first screen on phones: the vertical cue is
+      /* the film strip owns the first screen on phones: the vertical cue is
      dropped rather than allowed to collide with the stat row             */
   .scroll-cue{ display:none }
   .grain{ mix-blend-mode:normal; opacity:.028 }
@@ -1232,6 +1211,14 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
   .hero__sub{ margin-top:clamp(9px,1.4vh,16px) }
   .hero__lede{ margin-top:clamp(11px,1.7vh,18px) }
   .hero__meta{ margin-top:clamp(13px,2.1vh,24px); padding-top:clamp(11px,1.7vh,18px) }
+}
+/* portrait tablets with limited height (768x1024 and similar): the first
+   screen must still close inside the viewport, so tighten one step further */
+@media (max-aspect-ratio:5/6) and (max-height:1100px){
+  .hero__eyebrow{ margin-bottom:clamp(9px,1.5vh,15px) }
+  .hero__sub{ margin-top:clamp(8px,1.1vh,13px) }
+  .hero__lede{ margin-top:clamp(9px,1.3vh,15px) }
+  .hero__meta{ margin-top:clamp(11px,1.6vh,18px); padding-top:clamp(9px,1.3vh,15px) }
 }
 @media (max-width:1023px) and (max-aspect-ratio:5/6){
   .hero__inner{ padding-top:clamp(6px,1.4vh,16px) }
@@ -1259,8 +1246,7 @@ p code{ font-family:var(--font-mono); font-size:.86em; color:var(--sage) }
   .marquee__track{ animation:none }
   .hero__slate-dot{ animation:none }
   .scroll-cue__bead{ animation:none; top:18px }
-  .figure__img img,.plate__img img,.btn__txt,.nav__links a span,.nav__cta span,.tool{ transition:none }
-  .plate__img img{ filter:grayscale(.35) brightness(.94) }
+  .figure__img img,.plate__img img,.btn__txt,.nav__links a span,.nav__cta span,  .plate__img img{ filter:grayscale(.35) brightness(.94) }
   .scalebar__fill{ transform:scaleX(1) !important; transition:none }
   *{ animation-duration:.001ms !important; animation-iteration-count:1 !important }
 }
