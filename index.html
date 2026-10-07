@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>The Chameleon — Master of Adaptation</title>
+<meta name="description" content="An editorial field study of the chameleon: colour as language, eyes that work independently, a tongue fired in a fraction of a second, and a body built to grip.">
+<meta name="theme-color" content="#070A08">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preload" href="assets/fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/hero-poster.jpg" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!--
+  ══════════════════════════════════════════════════════════════════════════
+  CLOUDINARY VIDEO PLAYER — requested configuration (exact values)
+  ──────────────────────────────────────────────────────────────────────────
+  window.cloudinary would be provided by the Cloudinary Video Player library.
+  It is intentionally not loaded from a CDN here: the preview sandbox blocks
+  external requests, and no third-party player UI is needed. The hero media
+  therefore plays the SAME asset — same cloudName, same publicId — through a
+  native <video> element, and assets/js/main.js contains a guarded
+  initialiser that upgrades to the official player if the library is present:
+
+      const player = cloudinary.player('player', {
+        cloudName: 'hitdvpiy',
+        publicId: 'mixkit-green-vailed-chameleon-seen-from-one-side-1489-full-hd'
+      });
+  ══════════════════════════════════════════════════════════════════════════
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Chameleon — Master of Adaptation",
+  "about": { "@type": "Thing", "name": "Chameleon (family Chamaeleonidae)" },
+  "description": "An editorial field study of chameleon vision, colour, tongue projection and grip.",
+  "isAccessibleForFree": true
+}
+</script>
+</head>
+
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<a class="skip-link" href="#section-01">Skip to content</a>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#top" aria-label="The Chameleon — back to top">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1" opacity=".45"/>
+          <circle cx="12" cy="12" r="6.4" stroke="currentColor" stroke-width="1" opacity=".6"/>
+          <circle cx="12" cy="12" r="3.8" stroke="currentColor" stroke-width="1" opacity=".8"/>
+          <circle cx="12" cy="12" r="1.55" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="nav__word">The&nbsp;Chameleon</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#adaptation"><span data-t="Adaptation">Adaptation</span></a>
+      <a href="#vision"><span data-t="Vision">Vision</span></a>
+      <a href="#hunt"><span data-t="Hunt">Hunt</span></a>
+      <a href="#facts"><span data-t="Facts">Facts</span></a>
+    </nav>
+
+    <a class="nav__cta" href="#final">
+      <span class="mask"><span class="lbl" data-t="Built for adaptation">Built for adaptation</span></span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+<!-- ══ HERO ═══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="top" aria-labelledby="heroTitle">
+  <div class="hero__stage">
+
+    <!-- Media: full-bleed on landscape viewports, cinematic letterbox strip on portrait -->
+    <div class="hero__media" id="heroMedia" data-hero-media>
+      <div class="hero__frame" aria-hidden="true"></div>
+
+      <video
+        id="heroVideo"
+        class="hero__video"
+        data-hero-video
+        poster="assets/img/hero-poster.jpg"
+        src="https://res.cloudinary.com/hitdvpiy/video/upload/mixkit-green-vailed-chameleon-seen-from-one-side-1489-full-hd.mp4"
+        muted
+        loop
+        playsinline
+        preload="auto"
+        disablepictureinpicture
+        aria-label="Green veiled chameleon filmed from one side in close-up, eye moving and mouth opening."></video>
+
+      <div class="hero__scrim hero__scrim--floor" aria-hidden="true"></div>
+      <div class="hero__scrim hero__scrim--left" aria-hidden="true"></div>
+      <div class="hero__scrim hero__scrim--head" aria-hidden="true"></div>
+
+      <div class="hero__slate" aria-hidden="true">
+        <span class="hero__slate-dot"></span>
+        <span>Live footage</span>
+        <span class="hero__slate-sep">·</span>
+        <span class="hero__slate-dim">Cloudinary / hitdvpiy</span>
+      </div>
+    </div>
+
+    <!-- Editorial type — always in the video's own negative space (bottom-left) -->
+    <div class="hero__inner">
+      <div class="hero__col">
+        <p class="eyebrow hero__eyebrow" data-hero-in="1">
+          <span class="eyebrow__rule" aria-hidden="true"></span>
+          Field notes — Reptilia · Chamaeleonidae
+        </p>
+
+        <h1 class="hero__title" id="heroTitle">
+          <span class="ln"><i data-hero-in="2">The</i></span>
+          <span class="ln"><i data-hero-in="3">Chameleon</i></span>
+        </h1>
+
+        <p class="hero__sub" data-hero-in="4">
+          <span class="hero__sub-main">Master of Adaptation</span>
+          <span class="hero__sub-tail">Slow by design. Fast by surprise.</span>
+        </p>
+
+        <p class="hero__lede" data-hero-in="5">
+          A family of roughly two hundred Old World lizards, rebuilt from the skull out
+          around one strategy: stay unnoticed, watch in two directions at once, and
+          strike faster than the eye can follow.
+        </p>
+
+        <ul class="hero__meta" data-hero-in="6">
+          <li><b>≈200</b><span>described species</span></li>
+          <li><b>3–70&nbsp;cm</b><span>smallest to largest</span></li>
+          <li><b>≈&nbsp;½</b><span>live in Madagascar</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tools: restrained, corner-anchored, never over the subject -->
+    <div class="hero__tools" data-hero-in="7">
+      <button class="tool" type="button" data-video-fullscreen title="Play the footage full screen">
+        <span class="tool__icon" aria-hidden="true">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 5V1h4M9 1h4v4M13 9v4H9M5 13H1V9" fill="none" stroke="currentColor" stroke-width="1.25"/></svg>
+        </span>
+        <span class="tool__txt">Full screen</span>
+      </button>
+    </div>
+
+    <a class="scroll-cue" href="#section-01" data-hero-in="8">
+      <span class="scroll-cue__rail" aria-hidden="true"><span class="scroll-cue__bead"></span></span>
+      <span class="scroll-cue__txt">Scroll to begin</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══ TENDER / MARQUEE ═══════════════════════════════════════════════════ -->
+<section class="tender" aria-label="Subject summary">
+  <div class="tender__inner" data-anim="up">
+    <p class="tender__quote">
+      Everything about a chameleon is a decision already made — <em>a slow animal that
+      has bet its life on not being seen.</em>
+    </p>
+    <p class="tender__attrib">Field note 001</p>
+  </div>
+  <div class="marquee" aria-hidden="true" data-marquee>
+    <div class="marquee__track">
+      <span>Chamaeleonidae</span><span aria-hidden="true">·</span>
+      <span>Vision without a blind spot</span><span aria-hidden="true">·</span>
+      <span>Colour as vocabulary</span><span aria-hidden="true">·</span>
+      <span>A tongue longer than the body</span><span aria-hidden="true">·</span>
+      <span>Zygodactyl grip</span><span aria-hidden="true">·</span>
+      <span>Nearly half of all species live on one island</span><span aria-hidden="true">·</span>
+      <span>Chamaeleonidae</span><span aria-hidden="true">·</span>
+      <span>Vision without a blind spot</span><span aria-hidden="true">·</span>
+      <span>Colour as vocabulary</span><span aria-hidden="true">·</span>
+      <span>A tongue longer than the body</span><span aria-hidden="true">·</span>
+      <span>Zygodactyl grip</span><span aria-hidden="true">·</span>
+      <span>Nearly half of all species live on one island</span><span aria-hidden="true">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 01 — WHAT IS A CHAMELEON ═══════════════════════════════════════════ -->
+<section class="sec sec--identity" id="section-01" aria-labelledby="h-01">
+  <div class="wrap">
+    <header class="sec__head">
+      <p class="eyebrow" data-anim="fade"><span class="eyebrow__rule" aria-hidden="true"></span>Section 01 — Identity</p>
+      <h2 class="sec__title" id="h-01" data-lines>
+        <span class="ln"><i>What is a</i></span>
+        <span class="ln"><i>chameleon?</i></span>
+      </h2>
+    </header>
+
+    <div class="identity">
+      <div class="identity__text">
+        <p class="lead" data-anim="up">
+          A chameleon is not simply a lizard with remarkable skin. It is a lizard whose
+          skeleton, eyes, tongue and feet have all been shaped by the same problem:
+          how to live in full view of the forest and still go unnoticed.
+        </p>
+        <p data-anim="up">
+          Chameleons form a single family, <em>Chamaeleonidae</em>, and most of them are
+          arboreal — at home in shrubs, thickets and canopy, where they move slowly,
+          deliberately, one foot at a time. Most species are also solitary, holding
+          small territories they defend with posture and colour long before they
+          defend them with teeth.
+        </p>
+        <p data-anim="up">
+          Their stronghold is sub-Saharan Africa. Nearly half of all known species
+          live in Madagascar, and the great majority of those are found nowhere else
+          on Earth. A smaller number reach further: into southern Europe, the Middle
+          East, and South Asia — the chameleons of India and Sri Lanka are among the
+          few that live outside Africa entirely.
+        </p>
+
+        <dl class="speclist" data-stagger>
+          <div data-anim="up"><dt>Family</dt><dd>Chamaeleonidae</dd></div>
+          <div data-anim="up"><dt>Described species</dt><dd>Roughly two hundred</dd></div>
+          <div data-anim="up"><dt>Core range</dt><dd>Sub-Saharan Africa &amp; Madagascar</dd></div>
+          <div data-anim="up"><dt>Outposts</dt><dd>S. Europe, Middle East, India, Sri Lanka</dd></div>
+          <div data-anim="up"><dt>Habit</dt><dd>Mostly arboreal, mostly solitary, diurnal</dd></div>
+        </dl>
+      </div>
+
+      <figure class="figure figure--portrait" data-anim="right" data-parallax="0.06">
+        <div class="figure__img">
+          <img src="assets/img/s01-portrait.jpg" width="1672" height="941" loading="lazy" decoding="async"
+               alt="A chameleon at rest on a moss-covered branch against a dark forest background.">
+        </div>
+        <figcaption>
+          <span class="figure__num">Fig. 01</span>
+          Stillness is the first defence. A chameleon's flattened body reads as the
+          edge of a leaf; its slow, rocking gait mimics a twig in moving air.
+        </figcaption>
+      </figure>
+    </div>
+
+    <aside class="pullquote" data-anim="up">
+      <p>“Unusual” is an understatement: eyes that move independently, a tongue longer
+        than the body, feet fused into pincers, and a tail that grips like a hand.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ══ 02 — THE LANGUAGE OF COLOUR ════════════════════════════════════════ -->
+<section class="sec sec--colour" id="colour" aria-labelledby="h-02">
+  <div class="wrap">
+    <header class="sec__head">
+      <p class="eyebrow" data-anim="fade"><span class="eyebrow__rule" aria-hidden="true"></span>Section 02 — Signal</p>
+      <h2 class="sec__title" id="h-02" data-lines>
+        <span class="ln"><i>The language</i></span>
+        <span class="ln"><i>of colour</i></span>
+      </h2>
+      <p class="sec__lede" data-anim="up">
+        Chameleons do not turn invisible. They talk — and most of what they say is
+        addressed to other chameleons.
+      </p>
+    </header>
+
+    <div class="colourgrid">
+      <figure class="figure figure--tall" data-anim="left" data-parallax="0.05">
+        <div class="figure__img figure__img--zoom">
+          <img src="assets/img/s02-colour.jpg" width="1122" height="1402" loading="lazy" decoding="async"
+               alt="A panther chameleon gripping a thin branch, its skin banded in teal, orange and red.">
+        </div>
+        <figcaption>
+          <span class="figure__num">Fig. 02</span>
+          Panther chameleon. Colour variants are regional — males from different
+          localities carry different bars, blues and reds.
+        </figcaption>
+      </figure>
+
+      <div class="colourtext">
+        <p class="lead" data-anim="up">
+          The idea that a chameleon dissolves into whatever surface it touches comes
+          mostly from folklore. In reality colour is a live, continuous signal:
+          territory, courtship, refusal, temperature and health, all worn on the
+          outside. Camouflage is part of the vocabulary — never the whole sentence.
+        </p>
+
+        <div class="mechanism" data-anim="up">
+          <h3 class="minihead">How the skin does it</h3>
+          <p>
+            Beneath the surface sit layered cells: <b>xanthophores</b> and
+            <b>erythrophores</b> holding yellow and red pigments, <b>melanophores</b>
+            holding dark brown and black. Between them lie <b>iridophores</b> —
+            cells packed with microscopic crystals of guanine.
+          </p>
+          <p>
+            In 2015 a research team working on panther chameleons showed that the
+            crystals in the upper iridophore layer are spaced so precisely they
+            reflect specific wavelengths of light: a living photonic lattice. By
+            widening or tightening that spacing, the animal shifts the colour it
+            reflects. A deeper layer reflects near-infrared light and appears to help
+            it manage heat.
+          </p>
+          <p class="cite">Teyssier et al., “Photonic crystals cause active colour change in chameleons”, <i>Nature Communications</i>, 2015</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive: four roles of colour -->
+    <div class="tones" data-tones>
+      <div class="tones__head">
+        <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Four things colour is for</p>
+        <p class="tones__hint" data-tones-hint>Select a role — the field changes with it.</p>
+      </div>
+
+      <div class="tones__body">
+        <div class="tones__swatch" data-tone-field aria-hidden="true">
+          <span class="tones__swatch-glow"></span>
+          <span class="tones__swatch-num" data-tone-num>01</span>
+          <span class="tones__swatch-cap">
+            <b data-tone-name>Social signalling</b>
+            <span data-tone-hex>PHOTIC FIELD · #2F6F5E</span>
+          </span>
+        </div>
+
+        <div class="tones__panel">
+          <div class="tones__tabs" role="tablist" aria-label="Roles of colour change">
+            <button role="tab" id="tab-signal" aria-controls="panel-signal" aria-selected="true"  data-tone="signal"  data-colour="#2f6f5e">01 Signal</button>
+            <button role="tab" id="tab-heat"   aria-controls="panel-heat"   aria-selected="false" data-tone="heat"    data-colour="#a8613a">02 Heat</button>
+            <button role="tab" id="tab-hide"   aria-controls="panel-hide"   aria-selected="false" data-tone="hide"    data-colour="#6d7a4a">03 Concealment</button>
+            <button role="tab" id="tab-health" aria-controls="panel-health" aria-selected="false" data-tone="health"  data-colour="#8c5c72">04 Condition</button>
+          </div>
+
+          <div class="tones__panes">
+            <div class="tone-pane is-active" role="tabpanel" id="panel-signal" aria-labelledby="tab-signal" data-pane="signal">
+              <h3>Social signalling</h3>
+              <p>This is the loudest use of colour. A male escalation is staged in full view: saturated pigment, a swollen throat, a body turned broadside. A rival reads the message from a distance and frequently never has to be fought — which is the point.</p>
+              <p class="tone-pane__note">Aggression · courtship · submission · territory</p>
+            </div>
+            <div class="tone-pane" role="tabpanel" id="panel-heat" aria-labelledby="tab-heat" data-pane="heat" hidden>
+              <h3>Temperature</h3>
+              <p>A cool chameleon darkens. Dark pigment absorbs more solar radiation, so the animal warms faster while it basks. As its body temperature climbs, it pales again — reflecting light rather than collecting it. Morning and evening, the same animal can look like two different species.</p>
+              <p class="tone-pane__note">Darker to warm · paler to reflect</p>
+            </div>
+            <div class="tone-pane" role="tabpanel" id="panel-hide" aria-labelledby="tab-hide" data-pane="hide" hidden>
+              <h3>Concealment</h3>
+              <p>Matching a background is real, but it is quieter than the myth suggests. Many species tune their tone and brightness to the leaves or bark they sit against, breaking up their outline rather than becoming perfectly invisible. Camouflage is one instrument in the set — not the whole performance.</p>
+              <p class="tone-pane__note">Tone, brightness and pattern against a background</p>
+            </div>
+            <div class="tone-pane" role="tabpanel" id="panel-health" aria-labelledby="tab-health" data-pane="health" hidden>
+              <h3>Condition &amp; intent</h3>
+              <p>Colour is also a status report. A receptive female advertises readiness with particular tones; a pregnant female signals refusal; a sick or stressed animal loses saturation and dulls. Because the signal is honest — it costs the body something to produce — it is worth reading.</p>
+              <p class="tone-pane__note">Receptivity · gravidity · stress · health</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 03 — VISION ════════════════════════════════════════════════════════ -->
+<section class="sec sec--vision" id="vision" aria-labelledby="h-03">
+  <div class="wrap">
+    <header class="sec__head">
+      <p class="eyebrow" data-anim="fade"><span class="eyebrow__rule" aria-hidden="true"></span>Section 03 — Vision</p>
+      <h2 class="sec__title" id="h-03" data-lines>
+        <span class="ln"><i>Eyes that see</i></span>
+        <span class="ln"><i>differently</i></span>
+      </h2>
+      <p class="sec__lede" data-anim="up">
+        A chameleon's eye is a cone of skin with a pinhole in it — and the two of them
+        are not obliged to agree.
+      </p>
+    </header>
+
+    <div class="vision">
+      <div class="vision__viz" data-anim="up">
+        <div class="eyeviz" data-eyeviz>
+          <div class="eyeviz__frame">
+            <svg viewBox="0 0 900 460" role="img" aria-labelledby="eyevizTitle eyevizDesc" preserveAspectRatio="xMidYMid meet">
+              <title id="eyevizTitle">Diagram of independent chameleon eye movement</title>
+              <desc id="eyevizDesc">Two conical eye turrets. Each pupil turns independently to follow the pointer. When a target falls in front of the head, both eyes converge and the display reports stereoscopic overlap.</desc>
+
+              <defs>
+                <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"  stop-color="#7fae74" stop-opacity=".30"/>
+                  <stop offset="60%" stop-color="#3d6b4a" stop-opacity=".10"/>
+                  <stop offset="100%" stop-color="#0a0e0b" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+
+              <g class="eyeviz__grid" aria-hidden="true">
+                <line x1="450" y1="18" x2="450" y2="442"/>
+                <line x1="30" y1="230" x2="870" y2="230"/>
+                <circle cx="450" cy="230" r="196"/>
+                <circle cx="450" cy="230" r="120" opacity=".5"/>
+              </g>
+
+              <!-- frontal lock cone -->
+              <path class="eyeviz__cone" d="M450 246 L336 62 A258 258 0 0 1 564 62 Z" aria-hidden="true"/>
+
+              <!-- sight lines -->
+              <line class="eyeviz__ray" data-ray="L" x1="0" y1="0" x2="0" y2="0"/>
+              <line class="eyeviz__ray" data-ray="R" x1="0" y1="0" x2="0" y2="0"/>
+
+              <!-- the target both eyes may lock onto -->
+              <g class="eyeviz__target" data-target aria-hidden="true">
+                <circle r="13"/><circle r="3.4" class="core"/>
+                <line x1="-19" y1="0" x2="-9" y2="0"/><line x1="9" y1="0" x2="19" y2="0"/>
+                <line x1="0" y1="-19" x2="0" y2="-9"/><line x1="0" y1="9" x2="0" y2="19"/>
+              </g>
+
+              <!-- left eye turret -->
+              <g class="eyeviz__eye" data-eye="L" transform="translate(258 252)">
+                <circle r="104" fill="url(#eyeGlow)" opacity=".9"/>
+                <circle class="eyeviz__ticks" r="103"/>
+                <g class="eyeviz__rings">
+                  <circle r="90"  class="r1"/><circle r="76" class="r2"/>
+                  <circle r="62"  class="r1"/><circle r="49" class="r2"/>
+                  <circle r="38"  class="r1"/><circle r="29" class="r2"/>
+                </g>
+                <g class="eyeviz__pupilwrap" data-pupil="L">
+                  <circle class="eyeviz__pupil" r="12"/>
+                  <circle class="eyeviz__pupil-core" r="5"/>
+                </g>
+                <g class="eyeviz__needle" data-needle="L">
+                  <line x1="0" y1="-96" x2="0" y2="-112"/>
+                </g>
+              </g>
+
+              <!-- right eye turret -->
+              <g class="eyeviz__eye" data-eye="R" transform="translate(642 252)">
+                <circle r="104" fill="url(#eyeGlow)" opacity=".9"/>
+                <circle class="eyeviz__ticks" r="103"/>
+                <g class="eyeviz__rings">
+                  <circle r="90"  class="r1"/><circle r="76" class="r2"/>
+                  <circle r="62"  class="r1"/><circle r="49" class="r2"/>
+                  <circle r="38"  class="r1"/><circle r="29" class="r2"/>
+                </g>
+                <g class="eyeviz__pupilwrap" data-pupil="R">
+                  <circle class="eyeviz__pupil" r="12"/>
+                  <circle class="eyeviz__pupil-core" r="5"/>
+                </g>
+                <g class="eyeviz__needle" data-needle="R">
+                  <line x1="0" y1="-96" x2="0" y2="-112"/>
+                </g>
+              </g>
+
+              <!-- centre mark -->
+              <g class="eyeviz__cross" aria-hidden="true">
+                <line x1="450" y1="150" x2="450" y2="176"/>
+                <line x1="450" y1="328" x2="450" y2="354"/>
+                <line x1="366" y1="252" x2="392" y2="252"/>
+                <line x1="508" y1="252" x2="534" y2="252"/>
+              </g>
+
+              <!-- readouts -->
+              <g class="eyeviz__read" aria-hidden="true">
+                <text class="lab" x="30"  y="424">LEFT EYE</text>
+                <text class="val" x="30"  y="404" data-read="L">000°</text>
+                <text class="lab" x="800" y="424" text-anchor="end">RIGHT EYE</text>
+                <text class="val" x="800" y="404" text-anchor="end" data-read="R">000°</text>
+                <text class="status" x="450" y="424" text-anchor="middle" data-read="status">SEARCHING · NO OVERLAP</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="eyeviz__bar">
+            <p class="eyeviz__caption">Move your cursor — or drag — across the diagram. Each turret aims on its own; bring the target in front of the head and both eyes converge.</p>
+            <button class="tool tool--ghost" type="button" data-eyeviz-freeze aria-pressed="false">
+              <span class="tool__txt">Freeze sweep</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vision__text">
+        <p class="lead" data-anim="up">
+          The eyeball sits inside a ring of tightly fused scales — a conical eyelid
+          that wraps everything except a small circular opening for the pupil. There
+          is no white to read, no obvious direction of gaze. From the outside, you
+          cannot tell where the animal is looking. That is the advantage.
+        </p>
+
+        <ul class="factlist" data-stagger>
+          <li data-anim="up"><h3>Independent axes</h3><p>Each eye is driven separately. One can track the sky while the other reads the ground beneath it — two searches running at once.</p></li>
+          <li data-anim="up"><h3>Near-complete coverage</h3><p>Between them, the eyes reach almost the entire space around the head — a combined field of view far wider than a forward-facing predator's.</p></li>
+          <li data-anim="up"><h3>Momentary overlap</h3><p>When something moves, both eyes swing in and lock onto it, overlapping briefly. That narrow window of binocular vision is when the tongue is committed.</p></li>
+          <li data-anim="up"><h3>Judging by focus</h3><p>Because the eyes point apart most of the time, distance seems to be judged largely by the effort of focusing rather than by stereo vision alone — an unusual solution, and a workable one.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="figure figure--wide" data-anim="up" data-parallax="0.04">
+      <div class="figure__img figure__img--zoom">
+        <img src="assets/img/s03-eye.jpg" width="1672" height="941" loading="lazy" decoding="async"
+             alt="Extreme close-up of a chameleon's conical eye turret, concentric rings of scales around a small dark pupil.">
+      </div>
+      <figcaption>
+        <span class="figure__num">Fig. 03</span>
+        Concentric fields of granular scales ring the pupil. The eye rotates inside this
+        turret; the skin around it barely moves at all.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ══ 04 — THE HUNT ══════════════════════════════════════════════════════ -->
+<section class="sec sec--hunt" id="hunt" aria-labelledby="h-04">
+  <div class="wrap">
+    <header class="sec__head sec__head--split">
+      <div>
+        <p class="eyebrow" data-anim="fade"><span class="eyebrow__rule" aria-hidden="true"></span>Section 04 — The strike</p>
+        <h2 class="sec__title" id="h-04" data-lines>
+          <span class="ln"><i>The hunt is</i></span>
+          <span class="ln"><i>arithmetic</i></span>
+        </h2>
+      </div>
+      <p class="sec__lede" data-anim="up">
+        Chameleons are ambush predators. The whole animal is arranged so that the
+        outcome is settled before the prey knows there was a decision to make.
+      </p>
+    </header>
+
+    <div class="hunt">
+      <figure class="figure figure--hunt" data-anim="scale">
+        <div class="figure__img">
+          <img src="assets/img/s04-hunt.jpg" width="1672" height="941" loading="lazy" decoding="async"
+               alt="A chameleon on a branch with its long tongue fully extended, catching an insect in mid-air.">
+        </div>
+
+        <div class="scalebar" data-scalebar aria-hidden="true">
+          <div class="scalebar__track">
+            <span class="scalebar__fill" data-scalebar-fill></span>
+          </div>
+          <div class="scalebar__ticks">
+            <span>0</span><span>1 × body length</span><span>2 × body length</span>
+          </div>
+          <p class="scalebar__label">Projectile reach — the tongue is loaded, fired and retrieved; the body hardly moves.</p>
+        </div>
+
+        <figcaption>
+          <span class="figure__num">Fig. 04</span>
+          The strike photographed at high shutter speed: tongue extended beyond the
+          head, tip already contacting the prey.
+        </figcaption>
+      </figure>
+
+      <div class="hunt__text">
+        <p class="lead" data-anim="up">
+          The tongue is not carried in the mouth like a rope. It is folded over a rod
+          of cartilage and elastic tissue, wound around by a tube-shaped accelerator
+          muscle — held cocked, like a spring under tension, for as long as the animal
+          waits.
+        </p>
+        <p data-anim="up">
+          When it fires, the tongue rolls outward off the cartilage and the accelerator
+          squeezes, driving the tip forward. The tip is a fleshy, mucus-coated pad: it
+          works like a small suction cup as much as a sticky surface. High-speed
+          recordings put a complete strike at well under a tenth of a second.
+        </p>
+        <p data-anim="up">
+          Reach is the other half of the design. The tongue can travel roughly twice
+          the animal's body length, which means an insect can be taken from a distance
+          that keeps the chameleon itself out of the decision — no leap, no chase, no
+          rustle of leaves.
+        </p>
+
+        <ul class="metrics" data-stagger>
+          <li data-anim="up"><b>&lt; 0.1 s</b><span>complete strike, start to capture</span></li>
+          <li data-anim="up"><b>≈ 2 ×</b><span>body length of usable reach</span></li>
+          <li data-anim="up"><b>1</b><span>attempt — the aim is decided before the shot</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 05 — BUILT TO CLIMB ════════════════════════════════════════════════ -->
+<section class="sec sec--climb" id="climb" aria-labelledby="h-05">
+  <div class="wrap">
+    <header class="sec__head">
+      <p class="eyebrow" data-anim="fade"><span class="eyebrow__rule" aria-hidden="true"></span>Section 05 — Grip</p>
+      <h2 class="sec__title" id="h-05" data-lines>
+        <span class="ln"><i>Built to</i></span>
+        <span class="ln"><i>climb</i></span>
+      </h2>
+      <p class="sec__lede" data-anim="up">
+        Every limb on this animal ends in a clamp. Nothing here is designed for
+        running; all of it is designed for holding on.
+      </p>
+    </header>
+
+    <div class="climb">
+      <p class="lead climb__lead" data-anim="up">
+        The feet are <b>zygodactyl</b>: the toes are bound together into two opposing
+        bundles, two on one side of the foot and three on the other, closing like a
+        pair of tongs. Where a bird grips with a claw, a chameleon grips with a
+        pincer — and then holds there, often with remarkably little effort, which is
+        why a chameleon can sleep in a tree without falling out of it.
+      </p>
+
+      <div class="climb__grid">
+        <figure class="figure figure--foot" data-anim="up" data-parallax="0.05">
+          <div class="figure__img figure__img--zoom">
+            <img src="assets/img/s05-feet.jpg" width="1536" height="1024" loading="lazy" decoding="async"
+                 alt="Close-up of a chameleon's foot gripping a slim branch, toes fused into two opposing bundles.">
+          </div>
+          <figcaption>
+            <span class="figure__num">Fig. 05</span>
+            Zygodactyl feet. The grip is a pincer over the branch, not a hug around it.
+          </figcaption>
+        </figure>
+
+        <div class="climb__stack">
+          <figure class="figure figure--tail" data-anim="up" data-parallax="0.07">
+            <div class="figure__img figure__img--zoom">
+              <img src="assets/img/s05-tail.jpg" width="1122" height="1402" loading="lazy" decoding="async"
+                   alt="A chameleon's long prehensile tail coiled in a spiral around a thin branch.">
+            </div>
+            <figcaption>
+              <span class="figure__num">Fig. 06</span>
+              A prehensile tail, coiled beneath a stem and taking weight off the feet.
+            </figcaption>
+          </figure>
+
+          <div class="climb__notes" data-stagger>
+            <div class="note" data-anim="up">
+              <h3>A fifth limb</h3>
+              <p>Most chameleons use the tail as a safety line while climbing and as an anchor while resting. Coiled under a branch, it carries load the feet do not have to.</p>
+            </div>
+            <div class="note" data-anim="up">
+              <h3>No second chance</h3>
+              <p>Unlike many other lizards, a chameleon's tail has no fracture planes — it cannot be shed to escape a predator, and it cannot be regrown. A chameleon that loses its tail keeps the loss.</p>
+            </div>
+            <div class="note" data-anim="up">
+              <h3>Slow traffic</h3>
+              <p>The gait is a deliberate, rocking advance: one limb at a time, weight shifted, the whole body swaying like a leaf in a breeze. Speed is not the strategy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 06 — ADAPTATION ════════════════════════════════════════════════════ -->
+<section class="sec sec--adapt" id="adaptation" aria-labelledby="h-06">
+  <div class="sec__texture" aria-hidden="true" data-parallax="0.1"></div>
+  <div class="wrap">
+    <header class="sec__head">
+      <p class="eyebrow" data-anim="fade"><span class="eyebrow__rule" aria-hidden="true"></span>Section 06 — Synthesis</p>
+      <h2 class="sec__title sec__title--xl" id="h-06" data-lines>
+        <span class="ln"><i>Five decisions,</i></span>
+        <span class="ln"><i>one animal</i></span>
+      </h2>
+      <p class="sec__lede" data-anim="up">
+        Vision finds the target. Colour sets the terms. The tongue collects. The feet
+        hold. The tail secures the whole arrangement.
+      </p>
+    </header>
+
+    <div class="rail" data-rail>
+      <article class="plate" data-anim="up" data-plate data-index="01">
+        <div class="plate__img"><img src="assets/img/s03-eye.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Chameleon eye turret in close-up."></div>
+        <p class="plate__num">01</p>
+        <h3>Vision</h3>
+        <p>Two eyes working on separate problems, joined only when an aim has to be exact.</p>
+      </article>
+      <article class="plate" data-anim="up" data-plate data-index="02">
+        <div class="plate__img"><img src="assets/img/s02-colour.jpg" width="1122" height="1402" loading="lazy" decoding="async" alt="Panther chameleon banded in teal, orange and red."></div>
+        <p class="plate__num">02</p>
+        <h3>Colour</h3>
+        <p>A photonic skin that carries messages and manages heat at the same time.</p>
+      </article>
+      <article class="plate" data-anim="up" data-plate data-index="03">
+        <div class="plate__img"><img src="assets/img/s04-hunt.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Chameleon with tongue fully extended catching an insect."></div>
+        <p class="plate__num">03</p>
+        <h3>Tongue</h3>
+        <p>Stored energy, released ballistically, with a pad on the end that holds prey.</p>
+      </article>
+      <article class="plate" data-anim="up" data-plate data-index="04">
+        <div class="plate__img"><img src="assets/img/s05-feet.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="Chameleon foot gripping a branch with opposing toe bundles."></div>
+        <p class="plate__num">04</p>
+        <h3>Grip</h3>
+        <p>Opposing toe bundles that close like pliers and stay closed with little effort.</p>
+      </article>
+      <article class="plate" data-anim="up" data-plate data-index="05">
+        <div class="plate__img"><img src="assets/img/s05-tail.jpg" width="1122" height="1402" loading="lazy" decoding="async" alt="Chameleon's prehensile tail coiled around a branch."></div>
+        <p class="plate__num">05</p>
+        <h3>Tail</h3>
+        <p>A fifth limb that anchors the body — and, once lost, is never replaced.</p>
+      </article>
+    </div>
+
+    <p class="rail-hint" aria-hidden="true">Drag or scroll sideways to see all five</p>
+
+    <p class="adapt__close" data-anim="up">
+      None of these five is remarkable on its own. Taken together they describe one
+      coherent animal: an ambush specialist that can sit almost invisible for hours
+      and finish a hunt in less time than a blink.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 07 — DID YOU KNOW ══════════════════════════════════════════════════ -->
+<section class="sec sec--facts" id="facts" aria-labelledby="h-07">
+  <div class="wrap">
+    <header class="sec__head">
+      <p class="eyebrow" data-anim="fade"><span class="eyebrow__rule" aria-hidden="true"></span>Section 07 — Field notes</p>
+      <h2 class="sec__title" id="h-07" data-lines>
+        <span class="ln"><i>Did you</i></span>
+        <span class="ln"><i>know?</i></span>
+      </h2>
+    </header>
+
+    <ol class="facts" data-stagger>
+      <li data-anim="up">
+        <span class="facts__n">01</span>
+        <div><h3>No replacement</h3><p>A chameleon cannot regrow a lost tail. There are no fracture planes for it to break along, and no regrowth afterwards.</p></div>
+      </li>
+      <li data-anim="up">
+        <span class="facts__n">02</span>
+        <div><h3>Not a costume</h3><p>Colour change is chiefly communication and temperature control. Camouflage is one application among several, not the purpose.</p></div>
+      </li>
+      <li data-anim="up">
+        <span class="facts__n">03</span>
+        <div><h3>Conical eyelids</h3><p>Most of the eye is sheathed in fused, cone-shaped skin. All that shows is a small circular opening around the pupil.</p></div>
+      </li>
+      <li data-anim="up">
+        <span class="facts__n">04</span>
+        <div><h3>Skin as optics</h3><p>The reflecting crystals in the skin sit in a lattice whose spacing the animal tunes — the colour is produced by structure, not only pigment.</p></div>
+      </li>
+      <li data-anim="up">
+        <span class="facts__n">05</span>
+        <div><h3>Mostly eggs</h3><p>Most chameleons lay eggs, but many species living in cool, high-altitude habitats give birth to live young instead.</p></div>
+      </li>
+      <li data-anim="up">
+        <span class="facts__n">06</span>
+        <div><h3>Half the family, one island</h3><p>Nearly half of all known chameleon species live in Madagascar, and the great majority of those live nowhere else on Earth.</p></div>
+      </li>
+      <li data-anim="up">
+        <span class="facts__n">07</span>
+        <div><h3>No ears on the outside</h3><p>There is no external ear opening and no visible eardrum. Much of what a chameleon senses arrives as vibration through the branch beneath it.</p></div>
+      </li>
+      <li data-anim="up">
+        <span class="facts__n">08</span>
+        <div><h3>Matchstick to metre</h3><p>The smallest are barely longer than a matchstick; the largest approach seventy centimetres — the same body plan, scaled across two orders of magnitude.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ 08 — FINAL ════════════════════════════════════════════════════════ -->
+<section class="final" id="final" aria-labelledby="h-08">
+  <div class="final__bg" aria-hidden="true" data-parallax="0.08">
+    <img src="assets/img/s08-final.jpg" width="1915" height="821" loading="lazy" decoding="async" alt="">
+  </div>
+  <div class="final__veil" aria-hidden="true"></div>
+
+  <div class="wrap final__inner">
+    <p class="eyebrow" data-anim="fade"><span class="eyebrow__rule" aria-hidden="true"></span>Section 08 — Closing</p>
+    <h2 class="final__title" id="h-08" data-lines>
+      <span class="ln"><i>Built for</i></span>
+      <span class="ln"><i>adaptation.</i></span>
+    </h2>
+    <p class="final__text" data-anim="up">
+      Nothing here is accidental. The eyes move apart so the animal can watch in two
+      directions at once. The skin speaks in colour. The tongue travels further than
+      the body it belongs to. The feet clamp and the tail holds. Adaptation is not a
+      single talent — it is a set of decisions that agree with one another. A
+      chameleon is what happens when an animal makes all of them at once.
+    </p>
+
+    <div class="final__foot" data-anim="up">
+      <a class="btn" href="#top">
+        <span class="mask"><span class="btn__txt" data-t="Back to the film">Back to the film</span></span>
+        <span class="btn__arrow" aria-hidden="true">↑</span>
+      </a>
+      <p class="final__sign">The Chameleon — field study in eight sections</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__col">
+      <p class="footer__mark">The&nbsp;Chameleon</p>
+      <p class="footer__kicker">Master of adaptation</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#section-01">01 What is a chameleon</a>
+      <a href="#colour">02 The language of colour</a>
+      <a href="#vision">03 Eyes that see differently</a>
+      <a href="#hunt">04 The hunt is arithmetic</a>
+      <a href="#climb">05 Built to climb</a>
+      <a href="#adaptation">06 Five decisions, one animal</a>
+      <a href="#facts">07 Did you know</a>
+      <a href="#final">08 Built for adaptation</a>
+    </nav>
+
+    <div class="footer__col footer__col--credits">
+      <p class="colophon">
+        <span>Footage</span> Green veiled chameleon — Mixkit free stock, delivered via
+        Cloudinary (<code>hitdvpiy</code>). Presented here as the primary visual asset.
+      </p>
+      <p class="colophon">
+        <span>Imagery</span> Illustrative photography. Colour-change mechanism after
+        Teyssier et&nbsp;al., <i>Nature Communications</i>, 2015.
+      </p>
+      <p class="colophon">
+        <span>Type</span> Archivo, Fraunces and JetBrains Mono, self-hosted.
+      </p>
+      <p class="colophon colophon--fine">Built as an interactive study. No statistics were invented; uncertain claims have been avoided.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
